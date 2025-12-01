@@ -19,9 +19,9 @@ struct AddDay: CommandPlugin {
     func performCommand(context: PluginContext, arguments: [String]) throws {
         print(context.package.directoryURL)
         
-        let dataPath = context.package.directoryURL.appending(path: "Sources/Data")
-        let sourcePath = context.package.directoryURL.appending(path: "Sources")
-        let testPath = context.package.directoryURL.appending(path: "Tests")
+        let dataPath = context.package.directoryURL.appending(path: "Sources/AdventOfCode/Data")
+        let sourcePath = context.package.directoryURL.appending(path: "Sources/AdventOfCode")
+        let testPath = context.package.directoryURL.appending(path: "Tests/AdventOfCode")
         
         guard let files = try? FileManager.default.contentsOfDirectory(atPath: dataPath.path),
               let lastDay = files.map({ $0.trimmingCharacters(in: .decimalDigits.inverted) }).compactMap(Int.init).max() else {
@@ -46,7 +46,7 @@ struct AddDay: CommandPlugin {
         FileManager.default.createFile(atPath: sourcePath.appending(path: "\(nextName).swift").path, contents: source.data(using: .utf8), attributes: nil)
         FileManager.default.createFile(atPath: testPath.appending(path: "\(nextName)Tests.swift").path, contents: test.data(using: .utf8), attributes: nil)
         
-        let manifestPath = context.package.directoryURL.appending(path: "Sources/AdventOfCode.swift")
+        let manifestPath = context.package.directoryURL.appending(path: "Sources/AdventOfCode/AdventOfCode.swift")
         guard var manifest = try? String.init(contentsOfFile: manifestPath.path, encoding: .utf8).components(separatedBy: .newlines),
               let index = manifest.firstIndex(of: "] // END DAYS") else {
             throw ProcessError.unableToFindTemplate
