@@ -1,5 +1,7 @@
 // swift-tools-version: 6.2
 import PackageDescription
+import CompilerPluginSupport
+
 
 let dependencies: [Target.Dependency] = [
     .product(name: "Algorithms", package: "swift-algorithms"),
@@ -22,6 +24,9 @@ let package = Package(
 			.upToNextMajor(from: "1.6.2")),
 		.package(
 			url: "https://github.com/swiftlang/swift-format.git",
+			.upToNextMajor(from: "602.0.0")),
+		.package(
+			url: "https://github.com/swiftlang/swift-syntax.git",
 			.upToNextMajor(from: "602.0.0"))
     ],
     targets: [
