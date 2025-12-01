@@ -1,26 +1,92 @@
+import Foundation
 import Algorithms
+import RegexBuilder
 
 
 struct Day01: AdventDay {
     // Save your data in a corresponding text file in the `Data` directory.
     var data: String
     
-    // Splits input data into its component parts and convert from string.
-    var entities: [[Int]] {
-        data.split(separator: "\n\n").map {
-            $0.split(separator: "\n").compactMap { Int($0) }
+    struct Rotation {
+        var dir: Dir
+        var clicks: Int
+        
+        enum Dir: String {
+            case left = "L"
+            case right = "R"
+        }
+        
+        static func parse(from string: String) -> [Self] {
+            let regex = Regex {
+                Capture {
+                    One(ChoiceOf {
+                        "L"
+                        "R"
+                    })
+                }
+                Capture {
+                    OneOrMore(.digit)
+                }
+            }
+            
+            return string.components(separatedBy: .whitespacesAndNewlines)
+                .compactMap { line in
+                    if let match = line.firstMatch(of: regex),
+                       let dir = Dir(rawValue: String(match.output.1)),
+                       let clicks = Int(match.output.2) {
+                        return Rotation(dir: dir, clicks: clicks)
+                    }
+                    return nil
+                }
         }
     }
     
-    // Replace this with your solution for the first part of the day's challenge.
     func part1() -> Any {
-        // Calculate the sum of the first set of input data
-        entities.first?.reduce(0, +) ?? 0
+        var password = 0
+        var position = 50
+        for rotation in Rotation.parse(from: data) {
+            switch rotation.dir {
+            case .left:
+                position -= rotation.clicks
+            case .right:
+                position += rotation.clicks
+            }
+            
+            while position < 0 {
+                position += 100
+            }
+            while position > 99 {
+                position -= 100
+            }
+            
+            if position == 0 {
+                password += 1
+            }
+        }
+        
+        return password
     }
     
-    // Replace this with your solution for the second part of the day's challenge.
     func part2() -> Any {
-        // Sum the maximum entries in each set of data
-        entities.map { $0.max() ?? 0 }.reduce(0, +)
+        var password = 0
+        var position = 50
+        for rotation in Rotation.parse(from: data) {
+            let move = rotation.dir == .left ? -1 : 1
+            for _ in 0..<rotation.clicks {
+                position += move
+                if position == 100 {
+                    position = 0
+                }
+                else if position == -1 {
+                    position = 99
+                }
+                
+                if position == 0 {
+                    password += 1
+                }
+            }
+        }
+        
+        return password
     }
 }
