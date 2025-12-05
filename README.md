@@ -2,7 +2,8 @@
 
 |Day|Part 1|Part 2|
 |---|------|------|
-|1|0.021760333 seconds|0.077792667 seconds|
-|2|0.635852166 seconds|6.711460083 seconds|
-|3|0.007987334 seconds|0.021841333 seconds|
-|4|0.013323417 seconds|0.476208917 seconds|
+|1|0.021220125 seconds|0.07818575 seconds|
+|2|0.639257 seconds|6.478454666 seconds|
+|3|0.007740583 seconds|0.021014917 seconds|
+|4|0.012862 seconds|0.465208875 seconds|
+|5|0.013372125 seconds|0.012009792 seconds|
