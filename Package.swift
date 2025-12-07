@@ -30,15 +30,29 @@ let package = Package(
 			.upToNextMajor(from: "602.0.0"))
     ],
     targets: [
+        .macro(
+            name: "UtilsMacros",
+            dependencies: [
+                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
+                .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
+            ]
+        ),
+        
+        .target(name: "Utils", dependencies: ["UtilsMacros"]),
         .executableTarget(
             name: "AdventOfCode",
-            dependencies: dependencies,
+            dependencies: ["Utils"] + dependencies,
             resources: [.copy("Data")]
         ),
+        
         .testTarget(
             name: "AdventOfCodeTests",
-            dependencies: ["AdventOfCode"] + dependencies
+            dependencies: [
+                "AdventOfCode", "UtilsMacros",
+                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax")
+            ] + dependencies
         ),
+        
         .plugin(
             name: "AddDay",
             capability: .command(
