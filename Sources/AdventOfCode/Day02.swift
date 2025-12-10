@@ -40,11 +40,11 @@ struct Day02: AdventDay {
             .sum() as Int
     }
     
-    func part2() -> Any {
+    func part2() async -> Any {
         let ranges = self.ranges
         
-        return ranges
-            .map { range in
+        return await ranges
+            .threadedMap { range in
                 var idSum = 0
                 for value in range {
                     let string = String(value)
