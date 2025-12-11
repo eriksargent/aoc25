@@ -2,12 +2,13 @@
 
 |Day|Part 1|Part 2|
 |---|------|------|
-|1|0.02083925 seconds|0.075739792 seconds|
-|2|0.625676333 seconds|2.95521775 seconds|
-|3|0.008244125 seconds|0.022096458 seconds|
-|4|0.013112542 seconds|0.473707334 seconds|
-|5|0.014091583 seconds|0.013099125 seconds|
-|6|0.002610083 seconds|0.003662791 seconds|
-|7|0.003063667 seconds|0.002210334 seconds|
-|8|1.484611833 seconds|1.750136125 seconds|
-|9|0.077155834 seconds|0.571213709 seconds|
+|1|0.021769125 seconds|0.077581 seconds|
+|2|0.61948225 seconds|2.775582959 seconds|
+|3|0.008282584 seconds|0.021896542 seconds|
+|4|0.013035375 seconds|0.483540584 seconds|
+|5|0.013736375 seconds|0.013111833 seconds|
+|6|0.002492958 seconds|0.003695917 seconds|
+|7|0.003210666 seconds|0.0021815 seconds|
+|8|1.5810695 seconds|1.875211959 seconds|
+|9|0.078330375 seconds|0.578119667 seconds|
+|10|0.042096333 seconds|0.024747208 seconds|

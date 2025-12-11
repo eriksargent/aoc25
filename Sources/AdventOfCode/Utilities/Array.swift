@@ -22,11 +22,17 @@ extension Array {
         return copy
     }
     
+    mutating public func popFirst() -> Element? {
+        guard let first else { return nil }
+        remove(at: 0)
+        return first
+    }
+    
     /// Performs a filter broken up into chunks and multithreaded. This does not keep a stable order
     public func threadedFilter(_ isIncluded: @Sendable @escaping (Element) -> Bool) async -> [Element] where Element: Sendable {
         return await withTaskGroup { group in
             for chunk in self.evenlyChunked(in: 10) {
-                group.addTask {
+                group.addTask(priority: .high) {
                     return chunk.filter(isIncluded)
                 }
             }
@@ -44,7 +50,7 @@ extension Array {
     public func threadedMap<T: Sendable>(_ transform: @Sendable @escaping (Element) -> T) async -> [T] where Element: Sendable {
         return await withTaskGroup { group in
             for chunk in self.evenlyChunked(in: 10) {
-                group.addTask {
+                group.addTask(priority: .high) {
                     return chunk.map(transform)
                 }
             }
