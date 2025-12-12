@@ -24,25 +24,4 @@ struct Day10Tests {
     }
 }
 
-/*
- 0x + 0y + 0z + 1w = a
- 0x + 1y + 0z + 1w = b
- 0x + 0y + 1z + 0w = c
- 0x + 0y + 1z + 1w = d
- 1x + 0y + 1z + 0w = e
- 1x + 1y + 0z + 0w = f
- 3x + 5y + 4z + 7w = a + b + c + d + e + f
- 
- 
- 
- A = [[i in b for b in buttons] for i in numbers]
- 
- b += linprog(c, A_eq=A, b_eq=joltage, integrality=1).fun
- 
- 0 0 0 0 1 1 | x | = 3
- 0 1 0 0 0 1 | y | = 5
- 0 0 1 1 1 0 | z | = 4
- 1 1 0 1 0 0 | w | = 7
- 
- 
- */
+
